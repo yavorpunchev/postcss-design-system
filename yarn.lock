@@ -911,6 +911,18 @@ form-data@~2.3.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
+fs-readfile-promise@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/fs-readfile-promise/-/fs-readfile-promise-3.0.0.tgz#8f66593bc196e4b6c16f4a156c4fcd7cc31cafd3"
+  dependencies:
+    graceful-fs "^4.1.2"
+
+fs-writefile-promise@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/fs-writefile-promise/-/fs-writefile-promise-2.0.0.tgz#14f9461fb5ffc148a339f50d2eeac578b41285bc"
+  dependencies:
+    mkdirp-promise "^4.0.1"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -1724,6 +1736,10 @@ minimist@^1.1.1:
 minimist@~0.0.1:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
+
+mkdirp-promise@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/mkdirp-promise/-/mkdirp-promise-4.0.1.tgz#2723b347831b9a400c43bdf21fbb767f7f9a1e09"
 
 mkdirp@^0.5.0, mkdirp@^0.5.1:
   version "0.5.1"
