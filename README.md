@@ -1,6 +1,6 @@
 # PostCSS Design System [![Build Status][ci-img]][ci]
 
-[PostCSS] plugin for generating CSS variables from a JSON file..
+[PostCSS] plugin for generating CSS variables from a JSON file.
 
 [PostCSS]: https://github.com/postcss/postcss
 [ci-img]:  https://travis-ci.org/yavorpunchev/postcss-design-system.svg
