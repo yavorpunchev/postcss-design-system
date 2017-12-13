@@ -1,0 +1,38 @@
+{
+  "name": "postcss-design-system",
+  "version": "0.0.0",
+  "description": "PostCSS plugin for generating CSS variables from a JSON file.",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "design",
+    "system",
+    "variables",
+    "json"
+  ],
+  "author": "Yavor Punchev <yavor.punchev@gmail.com>",
+  "license": "MIT",
+  "repository": "yavorpunchev/postcss-design-system",
+  "bugs": {
+    "url": "https://github.com/yavorpunchev/postcss-design-system/issues"
+  },
+  "homepage": "https://github.com/yavorpunchev/postcss-design-system",
+  "dependencies": {
+    "postcss": "^6.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-postcss": "^2.0.2",
+    "jest": "^20.0.0"
+  },
+  "scripts": {
+    "test": "jest && eslint *.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5",
+    "env": {
+      "jest": true
+    }
+  }
+}
