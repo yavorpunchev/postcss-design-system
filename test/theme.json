@@ -1,0 +1,11 @@
+{
+  "breakPoints": [30, 48],
+  "space": [5, 10],
+  "fontSizes": [10, 12],
+  "radii": [3, 4],
+  "fonts": ["-apple-system, sans-serif"],
+  "colors": {
+    "white": "#FFFFFF",
+    "black": "#000000"
+  }
+}

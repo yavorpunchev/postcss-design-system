@@ -2,9 +2,9 @@
 
 [PostCSS] plugin for generating CSS variables from a JSON file. The theme config works nicely with libraries like [styled-system](https://github.com/jxnblk/styled-system) and apps like [Compositor Lab](compositor.io/lab).
 
-[PostCSS]: https://github.com/postcss/postcss
-[ci-img]:  https://travis-ci.org/yavorpunchev/postcss-design-system.svg
-[ci]:      https://travis-ci.org/yavorpunchev/postcss-design-system
+[postcss]: https://github.com/postcss/postcss
+[ci-img]: https://travis-ci.org/yavorpunchev/postcss-design-system.svg
+[ci]: https://travis-ci.org/yavorpunchev/postcss-design-system
 
 ```json
 {
@@ -16,7 +16,7 @@
   "fonts": ["-apple-system, sans-serif"],
   "fontSizes": [14, 16, 18],
   "radii": [3, 6, 12],
-  "space": [15, 20, 40],
+  "space": [15, 20, 40]
 }
 ```
 
@@ -25,9 +25,9 @@
   --breakPoint0: 30em;
   --breakPoint1: 48em;
   --breakPoint2: 74em;
-  --color-white: #FFFFFF;
+  --color-white: #ffffff;
   --color-black: #000000;
-  --font0: -apple-system, sans-serif;
+  --fontFamily0: -apple-system, sans-serif;
   --fontSize0: 14px;
   --fontSize1: 16px;
   --fontSize2: 18px;
@@ -43,9 +43,11 @@
 ## Usage
 
 ```js
-postcss([ require('postcss-design-system')({
-  inputFile: './theme.json'
-}) ])
+postcss([
+  require('postcss-design-system')({
+    inputFile: './theme.json',
+  }),
+]);
 ```
 
 See [PostCSS] docs for examples for your environment.
