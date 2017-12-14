@@ -1,66 +1,64 @@
 const postcss = require('postcss');
 const readFile = require('fs-readfile-promise');
-const writeFile = require('fs-writefile-promise');
 const { forEach } = require('lodash');
 
-// Handling promises
-const onRejected = err => console.log(err);
-const onFulfilled = filename => console.log('Added a new file ' + filename);
+module.exports = postcss.plugin('postcss-design-system', function(options) {
+  options = options || {
+    inputFile: './theme.json',
+    outputFile: undefined,
+  };
 
-// Convert an object to a string with CSS variables
-const parseObject = object => {
-    let result = '';
-    forEach(object, (value, key) => {
-        result += '  --' + key + ': ' + value + ';\n';
-    });
-    return result;
-};
+  return function(css) {
+    const rootRule = postcss.rule({ selector: ':root' });
+    css.root().prepend(rootRule);
 
-// Create a CSS file
-const createFile = string => {
-    const output = ':root{\n' + string + '}';
-    return output;
-};
+    return readFile(options.inputFile)
+      .then(buffer => {
+        const object = JSON.parse(buffer.toString());
 
-// Convert to variables and write to a new file
-const writeCSS = (buffer, output) => {
-    const data = JSON.parse(buffer.toString());
-    const colors = createFile(parseObject(data.colors));
+        forEach(object, (objectValue, objectKey) => {
+          forEach(objectValue, (value, key) => {
+            let prefix, suffix;
 
-    if (output !== undefined) {
-        writeFile(output, colors)
-            .then(onFulfilled)
-            .catch(onRejected);
-    }
-};
+            switch (objectKey) {
+              default:
+                prefix = '';
+                suffix = '';
+                break;
+              case 'breakPoints':
+                prefix = 'breakPoint';
+                suffix = 'em';
+                break;
+              case 'space':
+                prefix = 'space';
+                suffix = 'px';
+                break;
+              case 'fontSizes':
+                prefix = 'fontSize';
+                suffix = 'px';
+                break;
+              case 'radii':
+                prefix = 'borderRadius';
+                suffix = 'px';
+                break;
+              case 'fonts':
+                prefix = 'fontFamily';
+                suffix = '';
+                break;
+              case 'colors':
+                prefix = 'color-';
+                suffix = '';
+                break;
+            }
 
-module.exports = postcss.plugin('postcss-design-system', function (options) {
-    options = options || {
-        inputFile: './theme.json',
-        outputFile: undefined
-    };
-
-    return function (css) {
-        const variableRootRule = postcss.rule({ selector: ':root' });
-        css.root().prepend(variableRootRule);
-
-        return readFile(options.inputFile)
-            .then(buffer => {
-                const object = JSON.parse(buffer.toString());
-                const colors = object.colors;
-
-                forEach(colors, (value, key) => {
-                    variableRootRule.append(
-                        postcss.decl({
-                            prop: '--' + key,
-                            value: colors[key]
-                        })
-                    );
-                    console.log(key + ' ' + colors[key]);
-                });
-
-                return buffer;
-            })
-            .then(buffer => writeCSS(buffer, options.outputFile));
-    };
+            rootRule.append(
+              postcss.decl({
+                prop: '--' + prefix + key,
+                value: value + suffix,
+              })
+            );
+          });
+        });
+      });
+  };
 });
