@@ -27,15 +27,17 @@ const writeCSS = (buffer, output) => {
     const data = JSON.parse(buffer.toString());
     const colors = createFile(parseObject(data.colors));
 
-    writeFile(output, colors)
-        .then(onFulfilled)
-        .catch(onRejected);
+    if (output !== undefined) {
+        writeFile(output, colors)
+            .then(onFulfilled)
+            .catch(onRejected);
+    }
 };
 
 module.exports = postcss.plugin('postcss-design-system', function (options) {
     options = options || {
         inputFile: './theme.json',
-        outputFile: './theme.css'
+        outputFile: undefined
     };
 
     return function (css) {
