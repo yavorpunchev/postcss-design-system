@@ -1,29 +1,31 @@
 const postcss = require('postcss');
 const readFile = require('fs-readfile-promise');
-const writeFile = require('fs-writefile-promise/lib/node7');
+const writeFile = require('fs-writefile-promise');
+const { forEach } = require('lodash');
 
-// On rejected promise
+// Handling promises
 const onRejected = err => console.log(err);
+const onFulfilled = filename => console.log('Added a new file ' + filename);
 
-// On fulfilled promise
-const onFulfilled = filename => console.log(filename);
-
-// Convert the colors object to variables
-const parseColors = colors => {
-    let output = ':root{\n';
-
-    Object.entries(colors).forEach(([key, value]) => {
-        output += '  --' + key + ': "' + value + '";\n';
+// Convert an object to a string with CSS variables
+const parseObject = object => {
+    let result = '';
+    forEach(object, (value, key) => {
+        result += '  --' + key + ': ' + value + ';\n';
     });
+    return result;
+};
 
-    output += '}';
+// Create a CSS file
+const createFile = string => {
+    const output = ':root{\n' + string + '}';
     return output;
 };
 
-// Read JSON file, convert to variables and write to a new file
-const readAndWrite = (buffer, output) => {
+// Convert to variables and write to a new file
+const writeCSS = (buffer, output) => {
     const data = JSON.parse(buffer.toString());
-    const colors = parseColors(data.colors);
+    const colors = createFile(parseObject(data.colors));
 
     writeFile(output, colors)
         .then(onFulfilled)
@@ -36,8 +38,27 @@ module.exports = postcss.plugin('postcss-design-system', function (options) {
         outputFile: './theme.css'
     };
 
-    // Input and output destination come from options
-    readFile(options.inputFile)
-        .then(buffer => readAndWrite(buffer, options.outputFile))
-        .catch(onRejected);
+    return function (css) {
+        const variableRootRule = postcss.rule({ selector: ':root' });
+        css.root().prepend(variableRootRule);
+
+        return readFile(options.inputFile)
+            .then(buffer => {
+                const object = JSON.parse(buffer.toString());
+                const colors = object.colors;
+
+                forEach(colors, (value, key) => {
+                    variableRootRule.append(
+                        postcss.decl({
+                            prop: '--' + key,
+                            value: colors[key]
+                        })
+                    );
+                    console.log(key + ' ' + colors[key]);
+                });
+
+                return buffer;
+            })
+            .then(buffer => writeCSS(buffer, options.outputFile));
+    };
 });
