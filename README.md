@@ -6,6 +6,8 @@
 [ci-img]: https://travis-ci.org/yavorpunchev/postcss-design-system.svg
 [ci]: https://travis-ci.org/yavorpunchev/postcss-design-system
 
+## Examples
+
 An example JSON theme file:
 
 ```json
@@ -21,8 +23,6 @@ An example JSON theme file:
   "space": [15, 20, 40]
 }
 ```
-
-## Examples
 
 CSS variables get injected into root:
 
