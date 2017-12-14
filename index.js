@@ -5,7 +5,6 @@ const { forEach } = require('lodash');
 module.exports = postcss.plugin('postcss-design-system', function(options) {
   options = options || {
     inputFile: './theme.json',
-    outputFile: undefined,
   };
 
   return function(css) {
