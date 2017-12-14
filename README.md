@@ -6,6 +6,8 @@
 [ci-img]: https://travis-ci.org/yavorpunchev/postcss-design-system.svg
 [ci]: https://travis-ci.org/yavorpunchev/postcss-design-system
 
+An example JSON theme file:
+
 ```json
 {
   "breakPoints": [30, 48, 74],
@@ -19,6 +21,8 @@
   "space": [15, 20, 40]
 }
 ```
+
+CSS variables get injected into root:
 
 ```css
 :root {
