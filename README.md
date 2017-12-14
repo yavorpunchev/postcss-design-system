@@ -22,6 +22,8 @@ An example JSON theme file:
 }
 ```
 
+## Examples
+
 CSS variables get injected into root:
 
 ```css
