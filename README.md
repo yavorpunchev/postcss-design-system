@@ -1,6 +1,6 @@
 # PostCSS Design System [![Build Status][ci-img]][ci]
 
-[PostCSS] plugin for generating CSS custom properties (variables) from a JSON theme file. The theme config can be linked to any CSS-in-JS library's `<ThemeProvider>`, just like [styled-system](https://github.com/jxnblk/styled-system#configuration)'s one for example. It can also work with [Compositor Lab](compositor.io/lab).
+[PostCSS] plugin for generating CSS custom properties (variables) from a JSON theme file. The theme config can come from any CSS-in-JS library's `<ThemeProvider>`, just like [styled-system](https://github.com/jxnblk/styled-system#configuration)'s one for example. It can also work with [Compositor Lab](compositor.io/lab).
 
 [postcss]: https://github.com/postcss/postcss
 [ci-img]: https://travis-ci.org/yavorpunchev/postcss-design-system.svg
@@ -12,7 +12,7 @@ An example JSON theme file:
 
 ```json
 {
-  "breakPoints": [30, 48, 74],
+  "breakpoints": [30, 48, 74],
   "colors": {
     "white": "#FFFFFF",
     "black": "#000000"
@@ -28,9 +28,9 @@ CSS variables get injected into `:root` selector:
 
 ```css
 :root {
-  --breakPoint0: 30em;
-  --breakPoint1: 48em;
-  --breakPoint2: 74em;
+  --breakpoint0: 30em;
+  --breakpoint1: 48em;
+  --breakpoint2: 74em;
   --color-white: #ffffff;
   --color-black: #000000;
   --fontFamily0: -apple-system, sans-serif;
