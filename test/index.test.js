@@ -11,8 +11,8 @@ function run(input, output, opts) {
 }
 
 const colorOutput = `:root {
-    --breakPoint0: 30em;
-    --breakPoint1: 48em;
+    --breakpoint0: 30em;
+    --breakpoint1: 48em;
     --space0: 5px;
     --space1: 10px;
     --fontSize0: 10px;
