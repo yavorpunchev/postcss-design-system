@@ -1,6 +1,6 @@
 {
   "name": "postcss-design-system",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "PostCSS plugin for generating CSS variables from a JSON file",
   "keywords": [
     "postcss",
