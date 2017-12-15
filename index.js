@@ -21,7 +21,7 @@ module.exports = postcss.plugin('postcss-design-system', function(options) {
 
             switch (objectKey) {
               default:
-                prefix = '';
+                prefix = objectKey;
                 suffix = '';
                 break;
               case 'breakPoints':

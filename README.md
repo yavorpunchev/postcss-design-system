@@ -1,6 +1,6 @@
 # PostCSS Design System [![Build Status][ci-img]][ci]
 
-[PostCSS] plugin for generating CSS variables from a JSON file. The theme config works nicely with libraries like [styled-system](https://github.com/jxnblk/styled-system) and apps like [Compositor Lab](compositor.io/lab).
+[PostCSS] plugin for generating CSS custom properties (variables) from a JSON theme file. The theme config can be linked to any CSS-in-JS library's `<ThemeProvider>`, just like [styled-system](https://github.com/jxnblk/styled-system#configuration)'s one for example. It can also work with [Compositor Lab](compositor.io/lab).
 
 [postcss]: https://github.com/postcss/postcss
 [ci-img]: https://travis-ci.org/yavorpunchev/postcss-design-system.svg
