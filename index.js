@@ -21,7 +21,7 @@ module.exports = postcss.plugin('postcss-design-system', function(options) {
               break;
             case 'breakpoints':
               prefix = 'breakpoint';
-              suffix = 'em';
+              suffix = '';
               break;
             case 'space':
               prefix = 'space';
