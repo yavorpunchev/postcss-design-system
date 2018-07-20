@@ -1,8 +1,8 @@
 const postcss = require('postcss');
 const plugin = require('./../');
 
-function run(input, output, opts) {
-  return postcss([plugin(opts)])
+function run(input, output, options) {
+  return postcss([plugin(options)])
     .process(input)
     .then(result => {
       expect(result.css).toEqual(output);
@@ -24,6 +24,10 @@ const colorOutput = `:root {
     --color-black: #000000
 }`;
 
+const options = {
+  inputFile: './test/theme.json',
+};
+
 it('Should inject all variables in root correctly', () => {
-  return run('', colorOutput, { inputFile: './test/theme.json' });
+  return run('', colorOutput, options);
 });
