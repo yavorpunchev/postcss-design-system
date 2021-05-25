@@ -3,7 +3,7 @@ const plugin = require('./../');
 
 function run(input, output, options) {
   return postcss([plugin(options)])
-    .process(input)
+    .process(input, { from: undefined })
     .then(result => {
       expect(result.css).toEqual(output);
       expect(result.warnings().length).toBe(0);
